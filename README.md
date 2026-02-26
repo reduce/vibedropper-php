@@ -21,7 +21,7 @@ To use this package, install via Composer by adding the following to your applic
     }
   ],
   "require": {
-    "org-placeholder/vibedropper": "dev-main"
+    "vibedropper/vibedropper": "dev-main"
   }
 }
 ```

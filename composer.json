@@ -27,7 +27,7 @@
     "sort-packages": true
   },
   "description": "Vibedropper PHP SDK",
-  "name": "org-placeholder/vibedropper",
+  "name": "vibedropper/vibedropper",
   "require": {
     "php": "^8.1",
     "php-http/discovery": "^1",
