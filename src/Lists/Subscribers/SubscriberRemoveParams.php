@@ -10,7 +10,7 @@ use Vibedropper\Core\Concerns\SdkParams;
 use Vibedropper\Core\Contracts\BaseModel;
 
 /**
- * Remove subscriber.
+ * Remove subscriber from list.
  *
  * @see Vibedropper\Services\Lists\SubscribersService::remove()
  *

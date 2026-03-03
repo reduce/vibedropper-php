@@ -8,6 +8,7 @@ use Vibedropper\Campaigns\CampaignGetResponse;
 use Vibedropper\Campaigns\CampaignListResponse;
 use Vibedropper\Client;
 use Vibedropper\Core\Exceptions\APIException;
+use Vibedropper\Core\Util;
 use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\CampaignsContract;
 
@@ -58,10 +59,14 @@ final class CampaignsService implements CampaignsContract
      * @throws APIException
      */
     public function list(
-        RequestOptions|array|null $requestOptions = null
+        int $limit = 20,
+        int $page = 1,
+        RequestOptions|array|null $requestOptions = null,
     ): CampaignListResponse {
+        $params = Util::removeNulls(['limit' => $limit, 'page' => $page]);
+
         // @phpstan-ignore-next-line argument.type
-        $response = $this->raw->list(requestOptions: $requestOptions);
+        $response = $this->raw->list(params: $params, requestOptions: $requestOptions);
 
         return $response->parse();
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vibedropper\Services;
 
 use Vibedropper\Campaigns\CampaignGetResponse;
+use Vibedropper\Campaigns\CampaignListParams;
 use Vibedropper\Campaigns\CampaignListResponse;
 use Vibedropper\Client;
 use Vibedropper\Core\Contracts\BaseResponse;
@@ -52,6 +53,7 @@ final class CampaignsRawService implements CampaignsRawContract
      *
      * List campaigns
      *
+     * @param array{limit?: int, page?: int}|CampaignListParams $params
      * @param RequestOpts|null $requestOptions
      *
      * @return BaseResponse<CampaignListResponse>
@@ -59,13 +61,20 @@ final class CampaignsRawService implements CampaignsRawContract
      * @throws APIException
      */
     public function list(
-        RequestOptions|array|null $requestOptions = null
+        array|CampaignListParams $params,
+        RequestOptions|array|null $requestOptions = null,
     ): BaseResponse {
+        [$parsed, $options] = CampaignListParams::parseRequest(
+            $params,
+            $requestOptions,
+        );
+
         // @phpstan-ignore-next-line return.type
         return $this->client->request(
             method: 'get',
             path: 'campaigns',
-            options: $requestOptions,
+            query: $parsed,
+            options: $options,
             convert: CampaignListResponse::class,
         );
     }

@@ -53,7 +53,7 @@ final class SubscribersService implements SubscribersContract
     /**
      * @api
      *
-     * Add subscriber
+     * Add subscriber to list
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -87,7 +87,7 @@ final class SubscribersService implements SubscribersContract
     /**
      * @api
      *
-     * Remove subscriber
+     * Remove subscriber from list
      *
      * @param RequestOpts|null $requestOptions
      *

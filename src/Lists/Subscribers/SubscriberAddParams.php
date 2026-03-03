@@ -11,7 +11,7 @@ use Vibedropper\Core\Concerns\SdkParams;
 use Vibedropper\Core\Contracts\BaseModel;
 
 /**
- * Add subscriber.
+ * Add subscriber to list.
  *
  * @see Vibedropper\Services\Lists\SubscribersService::add()
  *
