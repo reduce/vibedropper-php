@@ -36,15 +36,24 @@ interface CustomersContract
      */
     public function update(
         string $customerID,
+        ?string $addressLine1 = null,
+        ?string $addressLine2 = null,
+        ?string $city = null,
+        ?string $country = null,
+        ?string $firstName = null,
+        ?string $lastName = null,
         ?string $name = null,
         ?string $pickupLocationID = null,
+        ?string $postalCode = null,
         ?string $regionID = null,
+        ?string $state = null,
         RequestOptions|array|null $requestOptions = null,
     ): CustomerUpdateResponse;
 
     /**
      * @api
      *
+     * @param string $search Search by name or email
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException

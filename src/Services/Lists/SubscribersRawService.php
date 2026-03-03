@@ -53,7 +53,7 @@ final class SubscribersRawService implements SubscribersRawContract
     /**
      * @api
      *
-     * Add subscriber
+     * Add subscriber to list
      *
      * @param array{
      *   email: string,
@@ -91,7 +91,7 @@ final class SubscribersRawService implements SubscribersRawContract
     /**
      * @api
      *
-     * Remove subscriber
+     * Remove subscriber from list
      *
      * @param array{listID: string}|SubscriberRemoveParams $params
      * @param RequestOpts|null $requestOptions

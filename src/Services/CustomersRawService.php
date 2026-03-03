@@ -56,7 +56,17 @@ final class CustomersRawService implements CustomersRawContract
      * Update customer
      *
      * @param array{
-     *   name?: string, pickupLocationID?: string|null, regionID?: string|null
+     *   addressLine1?: string|null,
+     *   addressLine2?: string|null,
+     *   city?: string|null,
+     *   country?: string|null,
+     *   firstName?: string|null,
+     *   lastName?: string|null,
+     *   name?: string,
+     *   pickupLocationID?: string|null,
+     *   postalCode?: string|null,
+     *   regionID?: string|null,
+     *   state?: string|null,
      * }|CustomerUpdateParams $params
      * @param RequestOpts|null $requestOptions
      *

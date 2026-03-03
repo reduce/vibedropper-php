@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vibedropper\Customers;
+namespace Vibedropper\Campaigns;
 
 use Vibedropper\Core\Attributes\Optional;
 use Vibedropper\Core\Concerns\SdkModel;
@@ -10,17 +10,15 @@ use Vibedropper\Core\Concerns\SdkParams;
 use Vibedropper\Core\Contracts\BaseModel;
 
 /**
- * List customers.
+ * List campaigns.
  *
- * @see Vibedropper\Services\CustomersService::list()
+ * @see Vibedropper\Services\CampaignsService::list()
  *
- * @phpstan-type CustomerListParamsShape = array{
- *   limit?: int|null, page?: int|null, search?: string|null
- * }
+ * @phpstan-type CampaignListParamsShape = array{limit?: int|null, page?: int|null}
  */
-final class CustomerListParams implements BaseModel
+final class CampaignListParams implements BaseModel
 {
-    /** @use SdkModel<CustomerListParamsShape> */
+    /** @use SdkModel<CampaignListParamsShape> */
     use SdkModel;
     use SdkParams;
 
@@ -29,12 +27,6 @@ final class CustomerListParams implements BaseModel
 
     #[Optional]
     public ?int $page;
-
-    /**
-     * Search by name or email.
-     */
-    #[Optional]
-    public ?string $search;
 
     public function __construct()
     {
@@ -46,16 +38,12 @@ final class CustomerListParams implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(
-        ?int $limit = null,
-        ?int $page = null,
-        ?string $search = null
-    ): self {
+    public static function with(?int $limit = null, ?int $page = null): self
+    {
         $self = new self;
 
         null !== $limit && $self['limit'] = $limit;
         null !== $page && $self['page'] = $page;
-        null !== $search && $self['search'] = $search;
 
         return $self;
     }
@@ -72,17 +60,6 @@ final class CustomerListParams implements BaseModel
     {
         $self = clone $this;
         $self['page'] = $page;
-
-        return $self;
-    }
-
-    /**
-     * Search by name or email.
-     */
-    public function withSearch(string $search): self
-    {
-        $self = clone $this;
-        $self['search'] = $search;
 
         return $self;
     }
