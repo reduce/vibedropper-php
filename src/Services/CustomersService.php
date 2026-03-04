@@ -14,6 +14,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\CustomersContract;
 
 /**
+ * Manage customers.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class CustomersService implements CustomersContract
@@ -34,7 +36,7 @@ final class CustomersService implements CustomersContract
     /**
      * @api
      *
-     * Get customer
+     * Get a customer
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -53,7 +55,7 @@ final class CustomersService implements CustomersContract
     /**
      * @api
      *
-     * Update customer
+     * Update a customer
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -61,16 +63,32 @@ final class CustomersService implements CustomersContract
      */
     public function update(
         string $customerID,
+        ?string $addressLine1 = null,
+        ?string $addressLine2 = null,
+        ?string $city = null,
+        ?string $country = null,
+        ?string $firstName = null,
+        ?string $lastName = null,
         ?string $name = null,
         ?string $pickupLocationID = null,
+        ?string $postalCode = null,
         ?string $regionID = null,
+        ?string $state = null,
         RequestOptions|array|null $requestOptions = null,
     ): CustomerUpdateResponse {
         $params = Util::removeNulls(
             [
+                'addressLine1' => $addressLine1,
+                'addressLine2' => $addressLine2,
+                'city' => $city,
+                'country' => $country,
+                'firstName' => $firstName,
+                'lastName' => $lastName,
                 'name' => $name,
                 'pickupLocationID' => $pickupLocationID,
+                'postalCode' => $postalCode,
                 'regionID' => $regionID,
+                'state' => $state,
             ],
         );
 
@@ -85,6 +103,7 @@ final class CustomersService implements CustomersContract
      *
      * List customers
      *
+     * @param string $search Search by name or email (case-insensitive)
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException

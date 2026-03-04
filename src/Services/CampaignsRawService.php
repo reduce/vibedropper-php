@@ -13,6 +13,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\CampaignsRawContract;
 
 /**
+ * Access email campaigns (read-only).
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class CampaignsRawService implements CampaignsRawContract
@@ -26,7 +28,7 @@ final class CampaignsRawService implements CampaignsRawContract
     /**
      * @api
      *
-     * Get campaign
+     * Get a campaign
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -50,7 +52,7 @@ final class CampaignsRawService implements CampaignsRawContract
     /**
      * @api
      *
-     * List campaigns
+     * Returns all campaigns for the organization ordered by creation date descending. No pagination.
      *
      * @param RequestOpts|null $requestOptions
      *
