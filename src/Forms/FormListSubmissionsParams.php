@@ -2,33 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Vibedropper\Lists\ListListResponse;
+namespace Vibedropper\Forms;
 
 use Vibedropper\Core\Attributes\Optional;
 use Vibedropper\Core\Concerns\SdkModel;
+use Vibedropper\Core\Concerns\SdkParams;
 use Vibedropper\Core\Contracts\BaseModel;
 
 /**
- * @phpstan-type PaginationShape = array{
- *   limit?: int|null, page?: int|null, total?: int|null, totalPages?: int|null
+ * List form submissions.
+ *
+ * @see Vibedropper\Services\FormsService::listSubmissions()
+ *
+ * @phpstan-type FormListSubmissionsParamsShape = array{
+ *   limit?: int|null, page?: int|null
  * }
  */
-final class Pagination implements BaseModel
+final class FormListSubmissionsParams implements BaseModel
 {
-    /** @use SdkModel<PaginationShape> */
+    /** @use SdkModel<FormListSubmissionsParamsShape> */
     use SdkModel;
+    use SdkParams;
 
     #[Optional]
     public ?int $limit;
 
     #[Optional]
     public ?int $page;
-
-    #[Optional]
-    public ?int $total;
-
-    #[Optional]
-    public ?int $totalPages;
 
     public function __construct()
     {
@@ -40,18 +40,12 @@ final class Pagination implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      */
-    public static function with(
-        ?int $limit = null,
-        ?int $page = null,
-        ?int $total = null,
-        ?int $totalPages = null,
-    ): self {
+    public static function with(?int $limit = null, ?int $page = null): self
+    {
         $self = new self;
 
         null !== $limit && $self['limit'] = $limit;
         null !== $page && $self['page'] = $page;
-        null !== $total && $self['total'] = $total;
-        null !== $totalPages && $self['totalPages'] = $totalPages;
 
         return $self;
     }
@@ -68,22 +62,6 @@ final class Pagination implements BaseModel
     {
         $self = clone $this;
         $self['page'] = $page;
-
-        return $self;
-    }
-
-    public function withTotal(int $total): self
-    {
-        $self = clone $this;
-        $self['total'] = $total;
-
-        return $self;
-    }
-
-    public function withTotalPages(int $totalPages): self
-    {
-        $self = clone $this;
-        $self['totalPages'] = $totalPages;
 
         return $self;
     }
