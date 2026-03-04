@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Vibedropper\Customers;
+namespace Vibedropper\Pages;
 
 use Vibedropper\Core\Attributes\Optional;
 use Vibedropper\Core\Concerns\SdkModel;
@@ -10,22 +10,22 @@ use Vibedropper\Core\Contracts\BaseModel;
 use Vibedropper\Lists\Pagination;
 
 /**
- * @phpstan-import-type CustomerShape from \Vibedropper\Customers\Customer
+ * @phpstan-import-type PageShape from \Vibedropper\Pages\Page
  * @phpstan-import-type PaginationShape from \Vibedropper\Lists\Pagination
  *
- * @phpstan-type CustomerListResponseShape = array{
- *   customers?: list<Customer|CustomerShape>|null,
+ * @phpstan-type PageListResponseShape = array{
+ *   pages?: list<Page|PageShape>|null,
  *   pagination?: null|Pagination|PaginationShape,
  * }
  */
-final class CustomerListResponse implements BaseModel
+final class PageListResponse implements BaseModel
 {
-    /** @use SdkModel<CustomerListResponseShape> */
+    /** @use SdkModel<PageListResponseShape> */
     use SdkModel;
 
-    /** @var list<Customer>|null $customers */
-    #[Optional(list: Customer::class)]
-    public ?array $customers;
+    /** @var list<Page>|null $pages */
+    #[Optional(list: Page::class)]
+    public ?array $pages;
 
     #[Optional]
     public ?Pagination $pagination;
@@ -40,28 +40,28 @@ final class CustomerListResponse implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<Customer|CustomerShape>|null $customers
+     * @param list<Page|PageShape>|null $pages
      * @param Pagination|PaginationShape|null $pagination
      */
     public static function with(
-        ?array $customers = null,
+        ?array $pages = null,
         Pagination|array|null $pagination = null
     ): self {
         $self = new self;
 
-        null !== $customers && $self['customers'] = $customers;
+        null !== $pages && $self['pages'] = $pages;
         null !== $pagination && $self['pagination'] = $pagination;
 
         return $self;
     }
 
     /**
-     * @param list<Customer|CustomerShape> $customers
+     * @param list<Page|PageShape> $pages
      */
-    public function withCustomers(array $customers): self
+    public function withPages(array $pages): self
     {
         $self = clone $this;
-        $self['customers'] = $customers;
+        $self['pages'] = $pages;
 
         return $self;
     }
