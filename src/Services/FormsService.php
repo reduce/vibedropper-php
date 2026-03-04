@@ -17,6 +17,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\FormsContract;
 
 /**
+ * Manage forms and submissions.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class FormsService implements FormsContract

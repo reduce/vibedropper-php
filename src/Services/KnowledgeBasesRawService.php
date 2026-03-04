@@ -15,6 +15,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\KnowledgeBasesRawContract;
 
 /**
+ * Manage knowledge bases and articles.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class KnowledgeBasesRawService implements KnowledgeBasesRawContract

@@ -16,6 +16,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\PagesContract;
 
 /**
+ * Manage landing pages.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class PagesService implements PagesContract

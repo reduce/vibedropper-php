@@ -18,6 +18,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\PagesRawContract;
 
 /**
+ * Manage landing pages.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class PagesRawService implements PagesRawContract

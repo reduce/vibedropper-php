@@ -14,6 +14,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\ListsRawContract;
 
 /**
+ * Manage subscriber lists.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class ListsRawService implements ListsRawContract

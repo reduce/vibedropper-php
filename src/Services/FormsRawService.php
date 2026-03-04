@@ -20,6 +20,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\FormsRawContract;
 
 /**
+ * Manage forms and submissions.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class FormsRawService implements FormsRawContract
