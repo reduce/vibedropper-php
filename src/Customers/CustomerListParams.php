@@ -31,7 +31,7 @@ final class CustomerListParams implements BaseModel
     public ?int $page;
 
     /**
-     * Search by name or email.
+     * Search by name or email (case-insensitive).
      */
     #[Optional]
     public ?string $search;
@@ -77,7 +77,7 @@ final class CustomerListParams implements BaseModel
     }
 
     /**
-     * Search by name or email.
+     * Search by name or email (case-insensitive).
      */
     public function withSearch(string $search): self
     {

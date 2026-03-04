@@ -8,7 +8,6 @@ use Vibedropper\Campaigns\CampaignGetResponse;
 use Vibedropper\Campaigns\CampaignListResponse;
 use Vibedropper\Client;
 use Vibedropper\Core\Exceptions\APIException;
-use Vibedropper\Core\Util;
 use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\CampaignsContract;
 
@@ -33,7 +32,7 @@ final class CampaignsService implements CampaignsContract
     /**
      * @api
      *
-     * Get campaign
+     * Get a campaign
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -52,21 +51,17 @@ final class CampaignsService implements CampaignsContract
     /**
      * @api
      *
-     * List campaigns
+     * Returns all campaigns for the organization ordered by creation date descending. No pagination.
      *
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
      */
     public function list(
-        int $limit = 20,
-        int $page = 1,
-        RequestOptions|array|null $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null
     ): CampaignListResponse {
-        $params = Util::removeNulls(['limit' => $limit, 'page' => $page]);
-
         // @phpstan-ignore-next-line argument.type
-        $response = $this->raw->list(params: $params, requestOptions: $requestOptions);
+        $response = $this->raw->list(requestOptions: $requestOptions);
 
         return $response->parse();
     }

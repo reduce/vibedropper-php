@@ -53,7 +53,7 @@ interface CustomersContract
     /**
      * @api
      *
-     * @param string $search Search by name or email
+     * @param string $search Search by name or email (case-insensitive)
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException

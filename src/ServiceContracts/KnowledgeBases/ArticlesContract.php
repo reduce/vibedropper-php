@@ -17,7 +17,7 @@ interface ArticlesContract
     /**
      * @api
      *
-     * @param string $content HTML or markdown content
+     * @param string $content HTML content
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException

@@ -34,7 +34,7 @@ final class CustomersService implements CustomersContract
     /**
      * @api
      *
-     * Get customer
+     * Get a customer
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -53,7 +53,7 @@ final class CustomersService implements CustomersContract
     /**
      * @api
      *
-     * Update customer
+     * Update a customer
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -101,7 +101,7 @@ final class CustomersService implements CustomersContract
      *
      * List customers
      *
-     * @param string $search Search by name or email
+     * @param string $search Search by name or email (case-insensitive)
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException

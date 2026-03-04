@@ -29,7 +29,7 @@ final class CustomersRawService implements CustomersRawContract
     /**
      * @api
      *
-     * Get customer
+     * Get a customer
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -53,7 +53,7 @@ final class CustomersRawService implements CustomersRawContract
     /**
      * @api
      *
-     * Update customer
+     * Update a customer
      *
      * @param array{
      *   addressLine1?: string|null,
