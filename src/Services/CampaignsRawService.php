@@ -13,6 +13,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\CampaignsRawContract;
 
 /**
+ * Access email campaigns (read-only).
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class CampaignsRawService implements CampaignsRawContract

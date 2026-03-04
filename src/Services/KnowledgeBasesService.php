@@ -15,6 +15,8 @@ use Vibedropper\ServiceContracts\KnowledgeBasesContract;
 use Vibedropper\Services\KnowledgeBases\ArticlesService;
 
 /**
+ * Manage knowledge bases and articles.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class KnowledgeBasesService implements KnowledgeBasesContract
