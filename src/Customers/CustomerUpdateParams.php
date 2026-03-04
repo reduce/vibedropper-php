@@ -10,7 +10,7 @@ use Vibedropper\Core\Concerns\SdkParams;
 use Vibedropper\Core\Contracts\BaseModel;
 
 /**
- * Update customer.
+ * Update a customer.
  *
  * @see Vibedropper\Services\CustomersService::update()
  *

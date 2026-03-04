@@ -90,7 +90,7 @@ final class KnowledgeBasesService implements KnowledgeBasesContract
     /**
      * @api
      *
-     * List knowledge bases
+     * Returns all knowledge bases ordered by sortOrder then creation date.
      *
      * @param RequestOpts|null $requestOptions
      *

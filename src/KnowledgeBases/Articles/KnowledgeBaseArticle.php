@@ -41,6 +41,9 @@ final class KnowledgeBaseArticle implements BaseModel
     #[Optional('categoryId', nullable: true)]
     public ?string $categoryID;
 
+    /**
+     * HTML content.
+     */
     #[Optional]
     public ?string $content;
 
@@ -139,6 +142,9 @@ final class KnowledgeBaseArticle implements BaseModel
         return $self;
     }
 
+    /**
+     * HTML content.
+     */
     public function withContent(string $content): self
     {
         $self = clone $this;

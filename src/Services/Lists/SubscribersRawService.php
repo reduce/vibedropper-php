@@ -29,7 +29,7 @@ final class SubscribersRawService implements SubscribersRawContract
     /**
      * @api
      *
-     * List subscribers
+     * Returns all subscribers for the list ordered by subscribe date descending. Includes linked customer data.
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -53,7 +53,7 @@ final class SubscribersRawService implements SubscribersRawContract
     /**
      * @api
      *
-     * Add subscriber to list
+     * Creates or updates the matching customer record and adds a subscriber entry. Returns 400 with code `duplicate` if already subscribed.
      *
      * @param array{
      *   email: string,
@@ -91,7 +91,7 @@ final class SubscribersRawService implements SubscribersRawContract
     /**
      * @api
      *
-     * Remove subscriber from list
+     * Remove a subscriber from a list
      *
      * @param array{listID: string}|SubscriberRemoveParams $params
      * @param RequestOpts|null $requestOptions

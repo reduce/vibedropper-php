@@ -86,7 +86,7 @@ final class KnowledgeBasesRawService implements KnowledgeBasesRawContract
     /**
      * @api
      *
-     * List knowledge bases
+     * Returns all knowledge bases ordered by sortOrder then creation date.
      *
      * @param RequestOpts|null $requestOptions
      *

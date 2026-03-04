@@ -34,8 +34,6 @@ interface CampaignsContract
      * @throws APIException
      */
     public function list(
-        int $limit = 20,
-        int $page = 1,
-        RequestOptions|array|null $requestOptions = null,
+        RequestOptions|array|null $requestOptions = null
     ): CampaignListResponse;
 }

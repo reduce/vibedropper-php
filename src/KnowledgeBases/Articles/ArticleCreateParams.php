@@ -36,7 +36,7 @@ final class ArticleCreateParams implements BaseModel
     public ?string $categoryID;
 
     /**
-     * HTML or markdown content.
+     * HTML content.
      */
     #[Optional]
     public ?string $content;
@@ -107,7 +107,7 @@ final class ArticleCreateParams implements BaseModel
     }
 
     /**
-     * HTML or markdown content.
+     * HTML content.
      */
     public function withContent(string $content): self
     {

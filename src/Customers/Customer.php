@@ -7,8 +7,13 @@ namespace Vibedropper\Customers;
 use Vibedropper\Core\Attributes\Optional;
 use Vibedropper\Core\Concerns\SdkModel;
 use Vibedropper\Core\Contracts\BaseModel;
+use Vibedropper\Customers\Customer\List_;
+use Vibedropper\Customers\Customer\Role;
 
 /**
+ * @phpstan-import-type ListShape from \Vibedropper\Customers\Customer\List_
+ * @phpstan-import-type RoleShape from \Vibedropper\Customers\Customer\Role
+ *
  * @phpstan-type CustomerShape = array{
  *   id?: string|null,
  *   addressLine1?: string|null,
@@ -16,20 +21,22 @@ use Vibedropper\Core\Contracts\BaseModel;
  *   averageOrderValue?: float|null,
  *   city?: string|null,
  *   country?: string|null,
+ *   createdAt?: \DateTimeInterface|null,
  *   email?: string|null,
  *   firstName?: string|null,
  *   lastName?: string|null,
  *   lastPurchaseDate?: \DateTimeInterface|null,
- *   lists?: list<mixed>|null,
+ *   lists?: list<List_|ListShape>|null,
  *   name?: string|null,
  *   orgID?: string|null,
  *   pickupLocation?: mixed,
  *   postalCode?: string|null,
  *   purchaseCount?: int|null,
  *   region?: mixed,
- *   roles?: list<mixed>|null,
+ *   roles?: list<Role|RoleShape>|null,
  *   state?: string|null,
  *   totalSpent?: float|null,
+ *   updatedAt?: \DateTimeInterface|null,
  * }
  */
 final class Customer implements BaseModel
@@ -56,6 +63,9 @@ final class Customer implements BaseModel
     public ?string $country;
 
     #[Optional]
+    public ?\DateTimeInterface $createdAt;
+
+    #[Optional]
     public ?string $email;
 
     #[Optional(nullable: true)]
@@ -67,8 +77,12 @@ final class Customer implements BaseModel
     #[Optional(nullable: true)]
     public ?\DateTimeInterface $lastPurchaseDate;
 
-    /** @var list<mixed>|null $lists */
-    #[Optional(list: 'mixed')]
+    /**
+     * Lists this customer is subscribed to.
+     *
+     * @var list<List_>|null $lists
+     */
+    #[Optional(list: List_::class)]
     public ?array $lists;
 
     #[Optional(nullable: true)]
@@ -89,15 +103,25 @@ final class Customer implements BaseModel
     #[Optional(nullable: true)]
     public mixed $region;
 
-    /** @var list<mixed>|null $roles */
-    #[Optional(list: 'mixed')]
+    /**
+     * Roles assigned to this customer.
+     *
+     * @var list<Role>|null $roles
+     */
+    #[Optional(list: Role::class)]
     public ?array $roles;
 
     #[Optional(nullable: true)]
     public ?string $state;
 
+    /**
+     * Total amount spent across all orders.
+     */
     #[Optional]
     public ?float $totalSpent;
+
+    #[Optional]
+    public ?\DateTimeInterface $updatedAt;
 
     public function __construct()
     {
@@ -109,8 +133,8 @@ final class Customer implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
-     * @param list<mixed>|null $lists
-     * @param list<mixed>|null $roles
+     * @param list<List_|ListShape>|null $lists
+     * @param list<Role|RoleShape>|null $roles
      */
     public static function with(
         ?string $id = null,
@@ -119,6 +143,7 @@ final class Customer implements BaseModel
         ?float $averageOrderValue = null,
         ?string $city = null,
         ?string $country = null,
+        ?\DateTimeInterface $createdAt = null,
         ?string $email = null,
         ?string $firstName = null,
         ?string $lastName = null,
@@ -133,6 +158,7 @@ final class Customer implements BaseModel
         ?array $roles = null,
         ?string $state = null,
         ?float $totalSpent = null,
+        ?\DateTimeInterface $updatedAt = null,
     ): self {
         $self = new self;
 
@@ -142,6 +168,7 @@ final class Customer implements BaseModel
         null !== $averageOrderValue && $self['averageOrderValue'] = $averageOrderValue;
         null !== $city && $self['city'] = $city;
         null !== $country && $self['country'] = $country;
+        null !== $createdAt && $self['createdAt'] = $createdAt;
         null !== $email && $self['email'] = $email;
         null !== $firstName && $self['firstName'] = $firstName;
         null !== $lastName && $self['lastName'] = $lastName;
@@ -156,6 +183,7 @@ final class Customer implements BaseModel
         null !== $roles && $self['roles'] = $roles;
         null !== $state && $self['state'] = $state;
         null !== $totalSpent && $self['totalSpent'] = $totalSpent;
+        null !== $updatedAt && $self['updatedAt'] = $updatedAt;
 
         return $self;
     }
@@ -208,6 +236,14 @@ final class Customer implements BaseModel
         return $self;
     }
 
+    public function withCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $self = clone $this;
+        $self['createdAt'] = $createdAt;
+
+        return $self;
+    }
+
     public function withEmail(string $email): self
     {
         $self = clone $this;
@@ -242,7 +278,9 @@ final class Customer implements BaseModel
     }
 
     /**
-     * @param list<mixed> $lists
+     * Lists this customer is subscribed to.
+     *
+     * @param list<List_|ListShape> $lists
      */
     public function withLists(array $lists): self
     {
@@ -301,7 +339,9 @@ final class Customer implements BaseModel
     }
 
     /**
-     * @param list<mixed> $roles
+     * Roles assigned to this customer.
+     *
+     * @param list<Role|RoleShape> $roles
      */
     public function withRoles(array $roles): self
     {
@@ -319,10 +359,21 @@ final class Customer implements BaseModel
         return $self;
     }
 
+    /**
+     * Total amount spent across all orders.
+     */
     public function withTotalSpent(float $totalSpent): self
     {
         $self = clone $this;
         $self['totalSpent'] = $totalSpent;
+
+        return $self;
+    }
+
+    public function withUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $self = clone $this;
+        $self['updatedAt'] = $updatedAt;
 
         return $self;
     }

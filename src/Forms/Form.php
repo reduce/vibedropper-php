@@ -22,7 +22,6 @@ use Vibedropper\Forms\Form\Status;
  *   orgID?: string|null,
  *   slug?: string|null,
  *   status?: null|Status|value-of<Status>,
- *   storeBlocks?: list<mixed>|null,
  *   successMessage?: string|null,
  *   title?: string|null,
  *   updatedAt?: \DateTimeInterface|null,
@@ -58,10 +57,6 @@ final class Form implements BaseModel
     #[Optional(enum: Status::class)]
     public ?string $status;
 
-    /** @var list<mixed>|null $storeBlocks */
-    #[Optional(list: 'mixed', nullable: true)]
-    public ?array $storeBlocks;
-
     #[Optional(nullable: true)]
     public ?string $successMessage;
 
@@ -83,7 +78,6 @@ final class Form implements BaseModel
      *
      * @param _Count|_CountShape|null $_count
      * @param Status|value-of<Status>|null $status
-     * @param list<mixed>|null $storeBlocks
      */
     public static function with(
         ?string $id = null,
@@ -94,7 +88,6 @@ final class Form implements BaseModel
         ?string $orgID = null,
         ?string $slug = null,
         Status|string|null $status = null,
-        ?array $storeBlocks = null,
         ?string $successMessage = null,
         ?string $title = null,
         ?\DateTimeInterface $updatedAt = null,
@@ -109,7 +102,6 @@ final class Form implements BaseModel
         null !== $orgID && $self['orgID'] = $orgID;
         null !== $slug && $self['slug'] = $slug;
         null !== $status && $self['status'] = $status;
-        null !== $storeBlocks && $self['storeBlocks'] = $storeBlocks;
         null !== $successMessage && $self['successMessage'] = $successMessage;
         null !== $title && $self['title'] = $title;
         null !== $updatedAt && $self['updatedAt'] = $updatedAt;
@@ -183,17 +175,6 @@ final class Form implements BaseModel
     {
         $self = clone $this;
         $self['status'] = $status;
-
-        return $self;
-    }
-
-    /**
-     * @param list<mixed>|null $storeBlocks
-     */
-    public function withStoreBlocks(?array $storeBlocks): self
-    {
-        $self = clone $this;
-        $self['storeBlocks'] = $storeBlocks;
 
         return $self;
     }
