@@ -16,6 +16,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\Lists\SubscribersRawContract;
 
 /**
+ * Manage list subscribers.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class SubscribersRawService implements SubscribersRawContract
@@ -29,7 +31,7 @@ final class SubscribersRawService implements SubscribersRawContract
     /**
      * @api
      *
-     * List subscribers
+     * Returns all subscribers for the list ordered by subscribe date descending. Includes linked customer data.
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -53,7 +55,7 @@ final class SubscribersRawService implements SubscribersRawContract
     /**
      * @api
      *
-     * Add subscriber
+     * Creates or updates the matching customer record and adds a subscriber entry. Returns 400 with code `duplicate` if already subscribed.
      *
      * @param array{
      *   email: string,
@@ -91,7 +93,7 @@ final class SubscribersRawService implements SubscribersRawContract
     /**
      * @api
      *
-     * Remove subscriber
+     * Remove a subscriber from a list
      *
      * @param array{listID: string}|SubscriberRemoveParams $params
      * @param RequestOpts|null $requestOptions

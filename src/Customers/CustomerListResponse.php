@@ -7,11 +7,11 @@ namespace Vibedropper\Customers;
 use Vibedropper\Core\Attributes\Optional;
 use Vibedropper\Core\Concerns\SdkModel;
 use Vibedropper\Core\Contracts\BaseModel;
-use Vibedropper\Customers\CustomerListResponse\Pagination;
+use Vibedropper\Lists\Pagination;
 
 /**
  * @phpstan-import-type CustomerShape from \Vibedropper\Customers\Customer
- * @phpstan-import-type PaginationShape from \Vibedropper\Customers\CustomerListResponse\Pagination
+ * @phpstan-import-type PaginationShape from \Vibedropper\Lists\Pagination
  *
  * @phpstan-type CustomerListResponseShape = array{
  *   customers?: list<Customer|CustomerShape>|null,

@@ -7,12 +7,15 @@ namespace Vibedropper\Lists\Subscribers;
 use Vibedropper\Core\Attributes\Optional;
 use Vibedropper\Core\Concerns\SdkModel;
 use Vibedropper\Core\Contracts\BaseModel;
+use Vibedropper\Customers\Customer;
 use Vibedropper\Lists\Subscribers\Subscriber\Status;
 
 /**
+ * @phpstan-import-type CustomerShape from \Vibedropper\Customers\Customer
+ *
  * @phpstan-type SubscriberShape = array{
  *   id?: string|null,
- *   customer?: mixed,
+ *   customer?: null|Customer|CustomerShape,
  *   customFields?: mixed,
  *   email?: string|null,
  *   listID?: string|null,
@@ -30,7 +33,7 @@ final class Subscriber implements BaseModel
     public ?string $id;
 
     #[Optional(nullable: true)]
-    public mixed $customer;
+    public ?Customer $customer;
 
     #[Optional(nullable: true)]
     public mixed $customFields;
@@ -61,11 +64,12 @@ final class Subscriber implements BaseModel
      *
      * You must use named parameters to construct any parameters with a default value.
      *
+     * @param Customer|CustomerShape|null $customer
      * @param Status|value-of<Status>|null $status
      */
     public static function with(
         ?string $id = null,
-        mixed $customer = null,
+        Customer|array|null $customer = null,
         mixed $customFields = null,
         ?string $email = null,
         ?string $listID = null,
@@ -95,7 +99,10 @@ final class Subscriber implements BaseModel
         return $self;
     }
 
-    public function withCustomer(mixed $customer): self
+    /**
+     * @param Customer|CustomerShape|null $customer
+     */
+    public function withCustomer(Customer|array|null $customer): self
     {
         $self = clone $this;
         $self['customer'] = $customer;

@@ -10,7 +10,10 @@ use Vibedropper\Core\BaseClient;
 use Vibedropper\Core\Util;
 use Vibedropper\Services\CampaignsService;
 use Vibedropper\Services\CustomersService;
+use Vibedropper\Services\FormsService;
+use Vibedropper\Services\KnowledgeBasesService;
 use Vibedropper\Services\ListsService;
+use Vibedropper\Services\PagesService;
 
 /**
  * @phpstan-import-type NormalizedRequest from \Vibedropper\Core\BaseClient
@@ -34,6 +37,21 @@ class Client extends BaseClient
      * @api
      */
     public CampaignsService $campaigns;
+
+    /**
+     * @api
+     */
+    public FormsService $forms;
+
+    /**
+     * @api
+     */
+    public KnowledgeBasesService $knowledgeBases;
+
+    /**
+     * @api
+     */
+    public PagesService $pages;
 
     /**
      * @param RequestOpts|null $requestOptions
@@ -78,6 +96,9 @@ class Client extends BaseClient
         $this->lists = new ListsService($this);
         $this->customers = new CustomersService($this);
         $this->campaigns = new CampaignsService($this);
+        $this->forms = new FormsService($this);
+        $this->knowledgeBases = new KnowledgeBasesService($this);
+        $this->pages = new PagesService($this);
     }
 
     /** @return array<string,string> */

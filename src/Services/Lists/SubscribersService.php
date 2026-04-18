@@ -14,6 +14,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\Lists\SubscribersContract;
 
 /**
+ * Manage list subscribers.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class SubscribersService implements SubscribersContract
@@ -34,7 +36,7 @@ final class SubscribersService implements SubscribersContract
     /**
      * @api
      *
-     * List subscribers
+     * Returns all subscribers for the list ordered by subscribe date descending. Includes linked customer data.
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -53,8 +55,11 @@ final class SubscribersService implements SubscribersContract
     /**
      * @api
      *
-     * Add subscriber
+     * Creates or updates the matching customer record and adds a subscriber entry. Returns 400 with code `duplicate` if already subscribed.
      *
+     * @param mixed $customFields Arbitrary key-value metadata
+     * @param string $pickupLocationID Pickup location ID (must belong to the given regionId)
+     * @param string $regionID Region ID to assign to the customer
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException
@@ -87,7 +92,7 @@ final class SubscribersService implements SubscribersContract
     /**
      * @api
      *
-     * Remove subscriber
+     * Remove a subscriber from a list
      *
      * @param RequestOpts|null $requestOptions
      *

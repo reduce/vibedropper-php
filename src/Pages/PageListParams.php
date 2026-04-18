@@ -2,21 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Vibedropper\Customers\CustomerListResponse;
+namespace Vibedropper\Pages;
 
 use Vibedropper\Core\Attributes\Optional;
 use Vibedropper\Core\Concerns\SdkModel;
+use Vibedropper\Core\Concerns\SdkParams;
 use Vibedropper\Core\Contracts\BaseModel;
+use Vibedropper\Pages\PageListParams\Status;
 
 /**
- * @phpstan-type PaginationShape = array{
- *   limit?: int|null, page?: int|null, total?: int|null, totalPages?: int|null
+ * List pages.
+ *
+ * @see Vibedropper\Services\PagesService::list()
+ *
+ * @phpstan-type PageListParamsShape = array{
+ *   limit?: int|null, page?: int|null, status?: null|Status|value-of<Status>
  * }
  */
-final class Pagination implements BaseModel
+final class PageListParams implements BaseModel
 {
-    /** @use SdkModel<PaginationShape> */
+    /** @use SdkModel<PageListParamsShape> */
     use SdkModel;
+    use SdkParams;
 
     #[Optional]
     public ?int $limit;
@@ -24,11 +31,13 @@ final class Pagination implements BaseModel
     #[Optional]
     public ?int $page;
 
-    #[Optional]
-    public ?int $total;
-
-    #[Optional]
-    public ?int $totalPages;
+    /**
+     * Filter by status. Omit or use "all" to return all pages.
+     *
+     * @var value-of<Status>|null $status
+     */
+    #[Optional(enum: Status::class)]
+    public ?string $status;
 
     public function __construct()
     {
@@ -39,19 +48,19 @@ final class Pagination implements BaseModel
      * Construct an instance from the required parameters.
      *
      * You must use named parameters to construct any parameters with a default value.
+     *
+     * @param Status|value-of<Status>|null $status
      */
     public static function with(
         ?int $limit = null,
         ?int $page = null,
-        ?int $total = null,
-        ?int $totalPages = null,
+        Status|string|null $status = null
     ): self {
         $self = new self;
 
         null !== $limit && $self['limit'] = $limit;
         null !== $page && $self['page'] = $page;
-        null !== $total && $self['total'] = $total;
-        null !== $totalPages && $self['totalPages'] = $totalPages;
+        null !== $status && $self['status'] = $status;
 
         return $self;
     }
@@ -72,18 +81,15 @@ final class Pagination implements BaseModel
         return $self;
     }
 
-    public function withTotal(int $total): self
+    /**
+     * Filter by status. Omit or use "all" to return all pages.
+     *
+     * @param Status|value-of<Status> $status
+     */
+    public function withStatus(Status|string $status): self
     {
         $self = clone $this;
-        $self['total'] = $total;
-
-        return $self;
-    }
-
-    public function withTotalPages(int $totalPages): self
-    {
-        $self = clone $this;
-        $self['totalPages'] = $totalPages;
+        $self['status'] = $status;
 
         return $self;
     }

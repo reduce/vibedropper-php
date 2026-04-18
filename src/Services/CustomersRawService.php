@@ -16,6 +16,8 @@ use Vibedropper\RequestOptions;
 use Vibedropper\ServiceContracts\CustomersRawContract;
 
 /**
+ * Manage customers.
+ *
  * @phpstan-import-type RequestOpts from \Vibedropper\RequestOptions
  */
 final class CustomersRawService implements CustomersRawContract
@@ -29,7 +31,7 @@ final class CustomersRawService implements CustomersRawContract
     /**
      * @api
      *
-     * Get customer
+     * Get a customer
      *
      * @param RequestOpts|null $requestOptions
      *
@@ -53,10 +55,20 @@ final class CustomersRawService implements CustomersRawContract
     /**
      * @api
      *
-     * Update customer
+     * Update a customer
      *
      * @param array{
-     *   name?: string, pickupLocationID?: string|null, regionID?: string|null
+     *   addressLine1?: string|null,
+     *   addressLine2?: string|null,
+     *   city?: string|null,
+     *   country?: string|null,
+     *   firstName?: string|null,
+     *   lastName?: string|null,
+     *   name?: string,
+     *   pickupLocationID?: string|null,
+     *   postalCode?: string|null,
+     *   regionID?: string|null,
+     *   state?: string|null,
      * }|CustomerUpdateParams $params
      * @param RequestOpts|null $requestOptions
      *

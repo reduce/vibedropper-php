@@ -7,11 +7,10 @@ namespace Vibedropper\Lists;
 use Vibedropper\Core\Attributes\Optional;
 use Vibedropper\Core\Concerns\SdkModel;
 use Vibedropper\Core\Contracts\BaseModel;
-use Vibedropper\Lists\ListListResponse\Pagination;
 
 /**
  * @phpstan-import-type ListShape from \Vibedropper\Lists\List_
- * @phpstan-import-type PaginationShape from \Vibedropper\Lists\ListListResponse\Pagination
+ * @phpstan-import-type PaginationShape from \Vibedropper\Lists\Pagination
  *
  * @phpstan-type ListListResponseShape = array{
  *   lists?: list<List_|ListShape>|null,

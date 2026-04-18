@@ -30,6 +30,9 @@ interface SubscribersContract
     /**
      * @api
      *
+     * @param mixed $customFields Arbitrary key-value metadata
+     * @param string $pickupLocationID Pickup location ID (must belong to the given regionId)
+     * @param string $regionID Region ID to assign to the customer
      * @param RequestOpts|null $requestOptions
      *
      * @throws APIException

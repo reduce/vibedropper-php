@@ -11,7 +11,7 @@ use Vibedropper\Core\Concerns\SdkParams;
 use Vibedropper\Core\Contracts\BaseModel;
 
 /**
- * Add subscriber.
+ * Creates or updates the matching customer record and adds a subscriber entry. Returns 400 with code `duplicate` if already subscribed.
  *
  * @see Vibedropper\Services\Lists\SubscribersService::add()
  *
@@ -32,15 +32,24 @@ final class SubscriberAddParams implements BaseModel
     #[Required]
     public string $email;
 
+    /**
+     * Arbitrary key-value metadata.
+     */
     #[Optional]
     public mixed $customFields;
 
     #[Optional]
     public ?string $name;
 
+    /**
+     * Pickup location ID (must belong to the given regionId).
+     */
     #[Optional('pickupLocationId')]
     public ?string $pickupLocationID;
 
+    /**
+     * Region ID to assign to the customer.
+     */
     #[Optional('regionId')]
     public ?string $regionID;
 
@@ -95,6 +104,9 @@ final class SubscriberAddParams implements BaseModel
         return $self;
     }
 
+    /**
+     * Arbitrary key-value metadata.
+     */
     public function withCustomFields(mixed $customFields): self
     {
         $self = clone $this;
@@ -111,6 +123,9 @@ final class SubscriberAddParams implements BaseModel
         return $self;
     }
 
+    /**
+     * Pickup location ID (must belong to the given regionId).
+     */
     public function withPickupLocationID(string $pickupLocationID): self
     {
         $self = clone $this;
@@ -119,6 +134,9 @@ final class SubscriberAddParams implements BaseModel
         return $self;
     }
 
+    /**
+     * Region ID to assign to the customer.
+     */
     public function withRegionID(string $regionID): self
     {
         $self = clone $this;
